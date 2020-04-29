@@ -1,0 +1,27 @@
+﻿@using System.Web.UI.HtmlControls
+@model Vidly.ViewModels.RandomMovieViewModel
+@{
+    ViewBag.Title = "customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>Customer</thead>
+    @if (Model.Customers.Count > 0)
+    {
+        foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@Html.ActionLink(customer.Name, "Details", new{id = customer.Id})</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>There are no customers yet.</tr>
+    }
+   
+</table>
+
