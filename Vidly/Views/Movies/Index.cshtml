@@ -1,4 +1,4 @@
-﻿@model Vidly.ViewModels.RandomMovieViewModel
+﻿@model System.Data.Entity.IDbSet<Vidly.Models.Movie>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,11 +7,17 @@
 <h2>Movies</h2>
 
 <table class="table table-bordered table-hover">
-    <thead>Movie</thead>
-    @foreach (var movie in Model.Movies)
-    {
-        <tr>
-            <td>@movie.Name</td>
-        </tr>
-    }
+    <thead>
+    <tr>
+        <th>Movie</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Name</td>
+            </tr>
+        }
+    </tbody>
 </table>

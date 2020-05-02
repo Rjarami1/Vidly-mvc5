@@ -10,6 +10,18 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private MyDBContext _context;
+
+        public MoviesController()
+        {
+            _context = new MyDBContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Random()
         {
@@ -42,15 +54,9 @@ namespace Vidly.Controllers
         // movies
         public ActionResult Index()
         {
-            var movies = new List<Movie>
-            {
-                new Movie {Name = "Shrek"},
-                new Movie {Name = "Wall-e"}
-            };
+            var movies = _context.Movies;
 
-            var movieList = new RandomMovieViewModel {Movies = movies};
-
-            return View(movieList);
+            return View(movies);
         }
 
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
