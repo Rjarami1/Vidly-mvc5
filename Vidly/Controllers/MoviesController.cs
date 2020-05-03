@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,7 +55,7 @@ namespace Vidly.Controllers
         // movies
         public ActionResult Index()
         {
-            var movies = _context.Movies;
+            var movies = _context.Movies.Include(m => m.Genre);
 
             return View(movies);
         }
@@ -63,6 +64,27 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content($"{year}/{month}");
+        }
+
+        public ActionResult Detail(int? id)
+        {
+            if (id.HasValue)
+            {
+                var movie = _context.Movies.Include(m => m.Genre).FirstOrDefault(n => n.Id == id);
+
+                if (movie != null)
+                {
+                    return View(movie);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
     }
 }
