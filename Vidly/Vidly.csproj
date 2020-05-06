@@ -181,6 +181,14 @@
     <Compile Include="Migrations\202005030136386_AddingGenres.designer.cs">
       <DependentUpon>202005030136386_AddingGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005060022177_GenreNotRequired.cs" />
+    <Compile Include="Migrations\202005060022177_GenreNotRequired.designer.cs">
+      <DependentUpon>202005060022177_GenreNotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005060055010_TryingToAddGenreId.cs" />
+    <Compile Include="Migrations\202005060055010_TryingToAddGenreId.designer.cs">
+      <DependentUpon>202005060055010_TryingToAddGenreId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -188,6 +196,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MyDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +243,8 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Detail.cshtml" />
+    <Content Include="Views\Customer\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +298,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005030136386_AddingGenres.resx">
       <DependentUpon>202005030136386_AddingGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060022177_GenreNotRequired.resx">
+      <DependentUpon>202005060022177_GenreNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060055010_TryingToAddGenreId.resx">
+      <DependentUpon>202005060055010_TryingToAddGenreId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
