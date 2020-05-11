@@ -10,11 +10,11 @@ using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
         private MyDBContext _context;
 
-        public MoviesController()
+        public MovieController()
         {
             _context = new MyDBContext();
         }
@@ -24,8 +24,19 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
@@ -44,14 +55,14 @@ namespace Vidly.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Movies");
+            return RedirectToAction("Index", "Movie");
         }
 
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel()
             {
                 Genres = genres
             };
@@ -66,9 +77,8 @@ namespace Vidly.Controllers
 
             var movie = _context.Movies.Single(m => m.Id == id);
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
